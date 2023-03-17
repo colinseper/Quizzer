@@ -1,0 +1,30 @@
+Quizzer (a notes review program)
+- Problem Domain Analysis
+-> What must my program visually represent and What does my program need to do for my users?
+--> My program will be a note review app for myself where when starting the program I can have a menu
+that lets me: 1) select a main category of notes to study, 2) pick from a set in that category, or 3)
+quit the program -> note EXCEPTION. I want to have the program ask a question and allow me to respond in
+the terminal with my answer (handling exceptions) and give me a response if it is right or wrong. I
+also want to be able to set a date to review the set of notes again, and be notified upon starting the
+program if I am behind or need to review soon.
+
+-> Problem Statement (Stick to Basic Features First, plain language description of your application, nouns = data
+structures, verbs = methods/classes/interfaces)
+--> My program will create a quiz application. It will store user quiz-cards and provide them with
+feedback based on if they give a correct or incorrect response.
+Nouns: quiz application, quiz-cards, feedback
+Verbs: create, store, provide
+
+Basic 1-Sentence about What the Project Is
+-> The project is a quiz app that is meant to be for hard-to-review questions in notes.
+
+Any Extra Planning Notes
+-> SQLTables: Note_Categories(category_id, category_name, review_date, selected, reviewed), Note_Cards(note_id,
+note_description, note_answer, category_id -> foreign key, correct)
+-> Note_Categories: Primary Key (category_id)
+-> Note_Cards: ON DELETE CASCADE on category_id
+-> Views: category_names (SELECT category_name FROM note_categories), note_cards_categories (SELECT category_name,
+note_id, note_description, note_answer_correct FROM note_cards INNER JOIN note_categories ON note_cards.category_id =
+note_categories = category_id)
+-> Indexes: category_name -> note_categories
+-> Stored_Procedures: add_category (add a note category), add_note (adds a note)
